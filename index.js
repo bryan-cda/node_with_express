@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 
 var port = 8082
-app.get("/app-node/:user/:password", function(req, res){
+app.get("/app-node/:user/:password/:age", function(req, res){
     res.send(req.params);
 });
 
