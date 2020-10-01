@@ -6,9 +6,9 @@ app.get("/app-node/:user/:password/:age", function(req, res){
     res.send(req.params);
 });
 
-app.get("/unicesumar", function(req, res){
+app.get("/college", function(req, res){
     res.sendFile(__dirname+"/pages/hello.html");
-})
+});
 
 app.get("/about", function(req, res){
     res.send("We are a software builder.");
