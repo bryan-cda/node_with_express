@@ -1,8 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database/database");
 
-const Spoiler = sequelize.define("ninja", {
-  id: {
+const Ninja = sequelize.define("ninja", {
     id:{
         allowNull: false,
         autoIncrement: true,
@@ -25,9 +24,6 @@ const Spoiler = sequelize.define("ninja", {
             len: [2, 40]
         }
     }
-  }
 });
-
-module.exports = Spoiler;
 
 module.exports = Ninja;
