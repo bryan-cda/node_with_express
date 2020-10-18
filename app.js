@@ -1,22 +1,28 @@
-const http = require("http");
+const express = require('express')
+  const http = require('http')
+  const ninjaRouter = require('./routes/routes')
+  const sequelize = require('./database/database')
 
-const url = "127.0.0.1";
+  const app = express()
 
-const port = 3000;
+  app.use(express.json())
 
-const express = require("express");
+  app.use('/api', ninjaRouter)
 
-const app = express();
+  app.use((request, response, next) => {
+      response.status(404).send()
+  })
 
-app.set("port", port)
+  app.use((error, request, response, next) => {
+      response.status(500).json({ error })
+  })
 
-app.use((req, resp, next) =>{
-    resp.status(404).send("Page not found.");
-});
+  sequelize.sync({ force: true }).then(() => {
+      const port = process.env.PORT || 3000
 
+      app.set('port', port)
 
-const server = http.createServer(app);
+      const server = http.createServer(app)
 
-server.listen(port, url, () =>{
-    console.log("Server listening on: "+ `${url}:${port}`);
-});
+      server.listen(port)
+})
