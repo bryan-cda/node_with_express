@@ -1,33 +1,22 @@
-var MongoClient = require('mongodb').MongoClient;
+const http = require("http");
 
-var url = "mongodb://localhost:27017";
+const url = "127.0.0.1";
 
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
+const port = 3000;
 
-  var dbo = db.db("konoha");
-  
-    var Obito = {  $set:{
-        name: "Uchiha Obito",
-        village: "Akatsuki",
-        abilities: [
-            "Katon: Gōkakyū no Jutsu", 
-            "Kamui", 
-            "Daisōrin", 
-            "Izanagi", 
-            "Kuchiyose no Jutsu", 
-            "Uchihagaeshi",
-            "Nunoboko no Ken", 
-            "Mokuton: Sashiki no Jutsu"
-        ]
-    }};
+const express = require("express");
 
-    var filter = { name: "Uchiha Obito" }
+const app = express();
 
-    dbo.collection("village").inventory.updateOne(filter, Obito, { upsert: true} ); 
+app.set("port", port)
 
-    db.close();
-
-}); 
+app.use((req, resp, next) =>{
+    resp.status(404).send("Page not found.");
+});
 
 
+const server = http.createServer(app);
+
+server.listen(port, url, () =>{
+    console.log("Server listening on: "+ `${url}:${port}`);
+});

@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/bryan-cda/node#readme",
   "dependencies": {
-    "mongodb": "^3.6.2"
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
   }
 }
