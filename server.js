@@ -1,7 +1,7 @@
 import http from "http";
 
 const route = {
-    "/":"Node with Express presentation",
+    "/":"welcome",
     "/foo": "foo",
     "/bar": "bar"
 }
