@@ -1,16 +1,5 @@
-import http from "http";
+import app from "./src/app.js"
 
-const route = {
-    "/":"welcome to node.js with express",
-    "/foo": "foo",
-    "/bar": "bar"
-}
-
-const server = http.createServer((req, res) => {
-    res.writeHead(200, {"Content-Type": "text/plan"});
-    res.end(route[req.url])
-});
-
-server.listen(3000, () => {
+app.listen(3000, () => {
     console.log("server listening...")
 });
