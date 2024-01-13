@@ -1,7 +1,6 @@
 import express from "express";
 import connectOnDatabase from "./config/dbconnection.js";
-import book from "./model/book.js";
-import { model } from "mongoose";
+import routes from "./routes/index.js";
 
 const connection = await connectOnDatabase();
 connection.on("error", (erro) => {
@@ -13,24 +12,13 @@ connection.once("open", () => {
 });
 
 const app = express();
-app.use(express.json());
-
-const books = [{id: 1, title: "foo"}, {id: 2, title: "bar"}];
+routes(app);
 
 function findBookById(id){
     return books.findIndex(book => {
         return book.id === Number(id);
     })
 };
-
-app.get("/", (req, res) => {
-    res.status(200).send("Welcome to Express");
-});
-
-app.get("/books", async (req, res) => {
-    const books = await book.find({});
-    res.status(200).json(books);
-});
 
 app.post("/books", (req, res) =>{
     books.push(req.body);
