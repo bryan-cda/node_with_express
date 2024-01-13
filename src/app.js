@@ -14,10 +14,4 @@ connection.once("open", () => {
 const app = express();
 routes(app);
 
-app.delete("/books/:id", (req, res) => {
-    const index = findBookById(req.params.id);
-    books.splice(index, 1);
-    res.status(204).send("Book deleted.")
-});
-
 export default app;

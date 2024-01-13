@@ -33,7 +33,7 @@ class bookController {
         try {
             const id = req.params.id;
             await book.findByIdAndUpdate(id, req.body);
-            res.status(200).json(updatedBook);
+            res.status(200).send("the book has been updated successfully");
         } catch(error){
             res.status(500).json(`${error.message} - error on attempt to update book: ${req.body}`)
         }
@@ -43,7 +43,7 @@ class bookController {
         try {
             const id = req.params.id;
             await book.findByIdAndDelete(id);
-            res.status(200).send("book has been deleted")
+            res.status(200).send("book has been deleted successfully")
         } catch (error){
             res.status(500).json(`${error.message} - error on attempt to delete book by id: ${req.params.id}`)
         }
