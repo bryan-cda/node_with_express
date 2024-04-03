@@ -61,6 +61,18 @@ class bookController {
             res.status(500).json(`${error.message} - error on attempt to delete book by id: ${req.params.id}`)
         }
     }
+
+    static async findBookByPublishCompany(req, res){
+        const publishing_company = req.query.publishing_company;
+        try{
+            const foundBooks = await book.find({publishing_company: publishing_company});
+            console.log(foundBooks.name);
+            res.status(200).json(foundBooks);
+            console.log(publishCompany);
+        }catch(error){
+            res.status(500).send(`${error} - error on attempt to find book by publush company`)
+        }
+    }
 }
 
 export default bookController;
